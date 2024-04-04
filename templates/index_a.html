@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Design Proposal Generator</title>
+</head>
+
+<body>
+    <h1>Design Proposal Generator</h1>
+    <p><a href="{{ url_for('listhistory', account=account) }}">History</a></p>
+    <p><a href="{{ url_for('refresh', account=account) }}">Refresh</a></p>
+    <p><a href="{{ url_for('logout', account=account) }}">Logout</a></p>
+
+    {% if not session['annotations'] %}
+    <form method="post">
+        <label for="design_case">Design Case Description:</label><br>
+        <textarea id="design_case" name="design_case" rows="4" cols="50"
+            placeholder="Enter the description..."></textarea><br><br>
+        <input type="submit" value="Generate Annotations">
+    </form>
+    {% endif %}
+
+    {% if session['annotations'] and not session['new_design_proposal'] %}
+    <h2>Generated Annotations:</h2>
+
+    <form method="post">
+        Appearance:<br>
+        <textarea id="appearance" rows="5"
+            cols="100">{{ session['annotations_split']['appearance'] }}</textarea><br><br>
+        Concept:<br>
+        <textarea id="concept" rows="5" cols="100">{{ session['annotations_split']['concept'] }}</textarea><br><br>
+        Usage Scenarios:<br>
+        <textarea id="usageScenarios" rows="5"
+            cols="100">{{ session['annotations_split']['usageScenarios'] }}</textarea><br><br>
+        Materials:<br>
+        <textarea id="materials" rows="5" cols="100">{{ session['annotations_split']['materials'] }}</textarea><br><br>
+        Functionality:<br>
+        <textarea id="functionality" rows="5"
+            cols="100">{{ session['annotations_split']['functionality'] }}</textarea><br><br>
+        <label for="design_topic">Design Topic:</label><br>
+        <input type="text" id="design_topic" name="design_topic" placeholder="Enter the design topic..."><br><br>
+        <input type="submit" value="Generate a Design Proposal">
+    </form>
+    {% endif %}
+
+    {% if session['new_design_proposal'] %}
+    <h2>New Design Proposal:</h2>
+    <textarea name="design_topic" rows="30" cols="100">{{ session['new_design_proposal'] }}</textarea><br><br>
+
+    <form method="post">
+        <input type="submit" value="Generate an Image">
+    </form>
+
+    {% if image_url %}
+    <img src="{{ image_url }}" alt="Generated Image" width="800" height="800">
+    {% endif %}
+
+    {% endif %}
+</body>
+
+</html>
