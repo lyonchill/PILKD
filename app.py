@@ -10,11 +10,11 @@ app.secret_key = 'your_secret_key'
 client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
 
 conn = psycopg2.connect(
-    host="dpg-cnpjlivsc6pc73fs8110-a",
+    host="dpg-co7d5dmn7f5s738l2ki0-a",
     port="5432",
-    user="database_qoiv_user",
-    password="BEjXQJ26VMd7jHfNZXOlBLNbLSceJEpI",
-    database="database_qoiv")
+    user="pilkd_db_user",
+    password="SUC4LxT1lcLbnpfv4lsFQOB2UqUPFjjy",
+    database="pilkd_db")
 cursor = conn.cursor()
 cursor.execute("CREATE TABLE IF NOT EXISTS users (UID SERIAL PRIMARY KEY, account TEXT, password TEXT)")
 cursor.execute("CREATE TABLE IF NOT EXISTS historyData (account TEXT, _case TEXT, annotation TEXT, topic TEXT, proposal TEXT, imageurl TEXT)")
