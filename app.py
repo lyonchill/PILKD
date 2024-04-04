@@ -20,7 +20,7 @@ cursor.execute("CREATE TABLE IF NOT EXISTS users (UID SERIAL PRIMARY KEY, accoun
 cursor.execute("CREATE TABLE IF NOT EXISTS historyData (account TEXT, _case TEXT, annotation TEXT, topic TEXT, proposal TEXT, imageurl TEXT)")
 
 user_status = {}
-IMGUR_CLIENT_ID = "4436a34ea480f93"
+IMGUR_CLIENT_ID = "daccd915aa2ca9b"
 
 @app.route('/')
 def login():
